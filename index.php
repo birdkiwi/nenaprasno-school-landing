@@ -1,8 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=450">
     <title>Высшая школа онкологии</title>
     <link rel="stylesheet" href="build/style.min.css">
 </head>
@@ -31,214 +30,326 @@
     </div>
 </header>
 <main id="vue-app" class="main-content">
-    <div class="wrapper">
-        <div class="welcome">
-            <div class="welcome-title">Заявка на первый тур</div>
-
-            <transition name="fade">
-                <div v-if="!formActive">
-                    <p>Это дисклеймер. Для продолжения подачи заявки пользователь должен подтвердить своё соответствие правилам конкурса, нажав на кнопку «Согласен». В случае несоответствия, пользователь нажимает кнопку «Уйти» и попадает на главную страницу.</p>
-
-                    <div class="welcome-buttons">
-                        <a href="https://nenaprasno.ru/" class="button button-round button-gray-hollow">Уйти</a>
-                        <button class="button button-round button-blue-hollow" @click.prevent.once="activateForm">Я согласен</button>
+    <div class="section-gray section-padding-top">
+        <div class="wrapper">
+            <section class="slider">
+                <div class="slider-text">
+                    <div class="slider-title">
+                        Отбор в высшую <br> школу онкологии
+                    </div>
+                    <div class="slider-subtitle">
+                        Победители получают обучение в ординатуре
+                    </div>
+                    <div class="slider-buttons">
+                        <a href="test.php" class="button button-blue button-round">Принять участие</a>
                     </div>
                 </div>
-            </transition>
+            </section>
+
+            <section class="winners-notice">
+                <div class="winners-notice-left">
+                    <div class="winners-notice-title">
+                        Победителям конкурса
+                    </div>
+                    <div class="winners-notice-subtitle">
+                        Победители конкурса начинают обучение <br>
+                        в ординатуре с 1 сентября 2017 года
+                    </div>
+                </div>
+                <div class="winners-notice-desc-wrap">
+                    <div class="winners-notice-desc">
+                        <div class="winners-notice-desc-item">
+                            <div class="winners-notice-desc-item-icon">
+                                <?php include "images/icons/icon-classroom.svg" ;?>
+                            </div>
+                            <div class="winners-notice-desc-item-content">
+                                Помимо обучения ординаторы получают от Фонда профилактики рака:
+
+                                <ul class="ul-dash">
+                                    <li>
+                                        Новейшую международную литературу и учебные материалы по онкологии
+                                    </li>
+
+                                    <li>
+                                        Принимают участие в журнальных клубах и мастер-классах с ведущими российскими и зарубежными специалистами
+                                    </li>
+
+                                    <li>
+                                        Проходят стажировки у лучших российских и зарубежных специалистов
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="winners-notice-desc-item">
+                            <div class="winners-notice-desc-item-icon">
+                                <?php include "images/icons/icon-english-receptionist.svg" ;?>
+                            </div>
+                            <div class="winners-notice-desc-item-content">
+                                Изучают английский язык и проходят множество дополнительных курсов, таких как: основы построения проектов, искусство ведения переговоров и многое другое
+                            </div>
+                        </div>
+                        <div class="winners-notice-desc-item">
+                            <div class="winners-notice-desc-item-icon">
+                                <?php include "images/icons/icon-doctor.svg" ;?>
+                            </div>
+                            <div class="winners-notice-desc-item-content">
+                                После успешного окончания ординатуры, победителям
+                                конкурса гарантировано трудоустройство по специальности
+                                или поступление в аспирантуру
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="winners-notice-note">
+                        Фонд оставляет за собой право исключить победителей программы при несоответствии требованиям, предъявляемым к резидентам ВШО, либо по другим причинам, указанным в договор
+                    </div>
+                </div>
+            </section>
         </div>
+    </div>
 
-        <form action="post.php" method="POST" class="question-form" @submit.prevent="submitForm">
-            <transition name="fade">
-                <div class="question-form-overlay" v-if="!formActive"></div>
-            </transition>
-            <div class="question-form-step" :class="(currentStep == 1) ? 'active' : ''">
-                <div class="question-form-title">Шаг 1 – Основные сведения</div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">1</div>
-                    <label for="form-field-fio" class="question-form-label">Как ваше полное имя?</label>
-                    <input v-validate="'required'" :class="{'is-error': formErrors.has('fio') }" id="form-field-fio" name="fio" type="text" placeholder="ФИО" class="question-form-input">
-                    <span v-show="formErrors.has('fio')" class="question-form-input-error">{{ formErrors.first('fio') }}</span>
+    <div class="section-white section-padding-top section-padding-bottom">
+        <div class="wrapper">
+            <div class="educators">
+                <div class="educators-title">
+                    Педагоги
+                </div>
+                <div class="educators-subtitle">
+                    В ходе конгрессов и форумов Вы будете непосредственно общаться с крупнейшими специалистами со всего мира.
                 </div>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">2</div>
-                    <label for="form-field-birthdate" class="question-form-label">Дата рождения</label>
-                    <input id="form-field-birthdate" name="birthdate" type="date" placeholder="ДД.ММ.ГГГГ" class="question-form-input js-date-picker">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">3</div>
-                    <label class="question-form-label">Стадия обучения</label>
-                    <div class="question-form-radio">
-                        <input id="form-field-stage-student" name="student-stage" type="radio" value="student" checked>
-                        <label for="form-field-stage-student">Студент 6 курса</label>
+                <div class="educators-grid">
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/alexey-barchuk.jpg" alt="Алексей Барчук">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Алексей Барчук
+                        </div>
                     </div>
-                    <div class="question-form-radio">
-                        <input id="form-field-stage-intern" name="student-stage" type="radio" value="intern">
-                        <label for="form-field-stage-intern">Интерн</label>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/vladimir-semiglazov.jpg" alt="Владимир Семиглазов">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Владимир Семиглазов
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/alexandr-sherbakov.jpg" alt="Александр Щербаков">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Александр Щербаков
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/evgeny-imyanitov.jpg" alt="Евгений Имянитов">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Евгений Имянитов
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/vadim-gushin.jpg" alt="Вадим Гущин">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Вадим Гущин
+                        </div>
+                    </div>
+
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/evgeny-levchenko.jpg" alt="Евгений Левченко	">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Евгений Левченко
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/alexey-karachun.jpg" alt="Алексей Карачун	">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Алексей Карачун
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/igor-berlev.jpg" alt="Игорь Берлев">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Игорь Берлев
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/tatyana-semiglazova.jpg" alt="Татьяна Семиглазова">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Татьяна Семиглазова
+                        </div>
+                    </div>
+                    <div class="educators-grid-item">
+                        <div class="educators-grid-item-photo">
+                            <img src="images/staff/ilya-chernikovsky.jpg" alt="Илья Черниковский">
+                        </div>
+                        <div class="educators-grid-item-name">
+                            Илья Черниковский
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">4</div>
-                    <label for="form-field-university" class="question-form-label">ВУЗ</label>
-                    <input id="form-field-university" name="university" type="text" placeholder="Введите название ВУЗа" class="question-form-input">
+    <div class="section-gray section-padding-top section-padding-bottom">
+        <div class="wrapper">
+            <div class="competition-conditions">
+                <div class="competition-conditions-title">
+                    Условия конкурса
                 </div>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">5</div>
-                    <label for="form-field-faculty" class="question-form-label">Факультет</label>
-                    <input id="form-field-faculty" name="faculty" type="text" placeholder="Название факультета" class="question-form-input">
-                </div>
+                <div class="competition-conditions-list">
+                    <div class="competition-conditions-list-item">
+                        <div class="competition-conditions-list-item-icon">
+                            1 <br>
+                            <small>тур</small>
+                        </div>
+                        <div class="competition-conditions-list-item-title">
+                            Подача заявки и заполнение анкеты
+                        </div>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">6</div>
-                    <label for="form-field-city" class="question-form-label">Город</label>
-                    <input id="form-field-city" name="city" type="text" placeholder="Укажите город проживания" class="question-form-input">
-                </div>
+                        <ul class="ul-dot">
+                            <li>
+                                Участникам следует подать заявку на участие в Конкурсе на этой странице
+                            </li>
+                            <li>
+                                Все предоставленные данные должны быть достоверными и должны подтверждаться соответствующими документами. В противном случае участник отстраняется от участия в конкурсе
+                            </li>
+                        </ul>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">7</div>
-                    <label for="form-field-phone" class="question-form-label">Телефон</label>
-                    <input id="form-field-phone" name="phone" type="text" placeholder="+7 (xxx) xxx-xx-xx" data-inputmask="'mask': '+7 (999) 999-99-99'" class="question-form-input">
-                </div>
+                        <strong>Внимание!</strong>
+                        <p>Документальная проверка достоверности предоставленных данных осуществляется на очном этапе!</p>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">8</div>
-                    <label for="form-field-social-page" class="question-form-label">Ссылка на страницу VK или FB</label>
-                    <input id="form-field-social-page" name="social-page" type="text" placeholder="Вставьте ссылку" class="question-form-input">
-                </div>
+                        <ul class="ul-dot">
+                            <li>
+                                Приём заявок оканчивается 15 апреля
+                            </li>
+                            <li>
+                                После анализа анкет отбираются участники второго тура
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="question-form-step-buttons">
-                    <button class="button button-round button-blue" @click.prevent="changeStep(2)">Далее к шагу №2</button>
+                    <div class="competition-conditions-list-item">
+                        <div class="competition-conditions-list-item-icon">
+                            2 <br>
+                            <small>тур</small>
+                        </div>
+                        <div class="competition-conditions-list-item-title">
+                            Написание статьи на заданную тему
+                        </div>
+
+                        <ul class="ul-dot">
+                            <li>
+                                Не позднее 18 апреля 2016 года участники получат тему для написания короткой статьи и правила ее оформления;
+                            </li>
+                            <li>
+                                Не позднее 29 апреля 2016 года статьи должны быть сданы, в противном случае участник отстраняется от участия в Конкурсе;
+                            </li>
+                            <li>
+                                Статьи оцениваются конкурсной комиссией в составе сотрудников Фонда профилактики рака и НИИ Онкологии им. Н.Н. Петрова по следующим критериям: уникальность текста, полнота раскрытия темы, грамотность, работа с источниками, оформление;
+                            </li>
+                            <li>
+                                Авторы 10 лучших статей проходят в третий тур конкурса.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="competition-conditions-list-item">
+                        <div class="competition-conditions-list-item-icon">
+                            3 <br>
+                            <small>тур</small>
+                        </div>
+                        <div class="competition-conditions-list-item-title">
+                            Очное собеседование в НИИ Онкологии
+                        </div>
+
+                        <p>
+                            Проведение очного собеседования с директором НИИ Онкологии им. Н.Н.Петрова, представителями Фонда профилактики рака и представителями ООО «ППФ Страхование жизни»:
+                        </p>
+
+                        <ul class="ul-dot">
+                            <li>
+                                Субъективная оценка умения держать речь, вести беседу;
+                            </li>
+                            <li>
+                                Оценка силы и характера мотивации к работе онкологом;
+                            </li>
+                            <li>
+                                Выступление перед пациентами на тему «Почему я хочу стать онкологом?»
+                                и пациентская оценка;
+                            </li>
+                            <li>
+                                Экзамен по онкологии.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="competition-conditions-list-item competition-conditions-list-item-last">
+                        <div class="competition-conditions-list-item-icon">
+                            <img src="images/icons/icon-award.png" alt="">
+                        </div>
+                        <div class="competition-conditions-list-item-title">
+                            По итогам третьего тура будут выбраны 9 победителей
+                        </div>
+
+                        <p>
+                            Победители получат возможность бесплатно обучаться в ординатуре
+                            НИИ Онкологии им. Н.Н. Петрова и станут участниками "Высшей школы онкологии" Фонда профилактики рака.
+                        </p>
+
+                        <div class="competition-conditions-list-buttons">
+                            <a href="#" class="button button-blue button-round">Принять участие</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="question-form-step" :class="(currentStep == 2) ? 'active' : ''">
-                <div class="question-form-title">Шаг 2 – Успехи в учебе</div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">1</div>
-                    <label for="form-field-average-score" class="question-form-label">Средний бал за весь период обучения</label>
-                    <input v-validate="'required'" :class="{'is-error': formErrors.has('average-score') }" id="form-field-average-score" name="average-score" type="text" placeholder="от 1 до 5" class="question-form-input">
-                    <span v-show="formErrors.has('average-score')" class="question-form-input-error">{{ formErrors.first('average-score') }}</span>
+            <div class="partners">
+                <div class="partners-title">
+                    Партнеры
                 </div>
 
-                <div class="question-form-group">
-                    <div class="question-form-group-num">2</div>
-                    <label for="form-field-anatomy-score" class="question-form-label">Оценка по анатомии</label>
-                    <input id="form-field-anatomy-score" name="anatomy-score" type="number" min="1" max="5" placeholder="от 1 до 5" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">3</div>
-                    <label for="form-field-biochemistry-score" class="question-form-label">Оценка по биохимии</label>
-                    <input id="form-field-biochemistry-score" name="biochemistry-score" type="number" min="1" max="5" placeholder="от 1 до 5" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">4</div>
-                    <label for="form-field-pharma-score" class="question-form-label">Оценка по фармакологии</label>
-                    <input id="form-field-pharma-score" name="pharma-score" type="number" min="1" max="5" placeholder="от 1 до 5" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">5</div>
-                    <label for="form-field-pathophysiology-score" class="question-form-label">Оценка по патафизиологии</label>
-                    <input id="form-field-pathophysiology-score" name="pathophysiology-score" type="number" min="1" max="5" placeholder="от 1 до 5" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">6</div>
-                    <label for="form-field-commonwealth-score" class="question-form-label">Оценка по патанатомии</label>
-                    <input id="form-field-commonwealth-score" name="commonwealth-score" type="number" min="1" max="5" placeholder="от 1 до 5" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">7</div>
-                    <label for="form-field-english" class="question-form-label">Английский язык</label>
-                    <div class="question-form-select">
-                        <select name="english" id="form-field-english">
-                            <option value="0">Beginner</option>
-                            <option value="1">Pre-Intermediate</option>
-                            <option value="2">Intermediate</option>
-                            <option value="3">Upper-Intermediate</option>
-                            <option value="4">Advanced</option>
-                            <option value="5">Proficiency</option>
-                        </select>
+                <div class="partners-grid-wrap">
+                    <div class="partners-grid">
+                        <div class="partners-grid-item">
+                            <a href="#">
+                                <img src="images/partners/partner-1.png" alt="Страхование жизни">
+                            </a>
+                        </div>
+                        <div class="partners-grid-item">
+                            <a href="#">
+                                <img src="images/partners/partner-2.png" alt="Biocad">
+                            </a>
+                        </div>
+                        <div class="partners-grid-item">
+                            <a href="#">
+                                <img src="images/partners/partner-3.png" alt="Ирвин 2">
+                            </a>
+                        </div>
+                        <div class="partners-grid-item">
+                            <a href="#">
+                                <img src="images/partners/partner-4.png" alt="Отели и хостел Друзья">
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">8</div>
-                    <label for="form-field-awards" class="question-form-label">Перечислите благодарности, грамоты и награды за успешное обучение</label>
-                    <textarea name="awards" id="form-field-awards" class="question-form-textarea" cols="30" rows="10" placeholder="Укажите в порядке значимости"></textarea>
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">9</div>
-                    <label class="question-form-label">Волонтерский опыт в сфере медицины</label>
-                    <div class="question-form-checkbox">
-                        <input id="form-field-volunteer-1" type="checkbox" name="volunteer-1" value="0">
-                        <label for="form-field-volunteer-1">Рак желудка</label>
-                    </div>
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">10</div>
-                    <label for="form-field-volunteer-exp" class="question-form-label">Опишите свой волонтерский опыт</label>
-                    <textarea name="volunteer-exp" id="form-field-volunteer-exp" class="question-form-textarea" cols="30" rows="10" placeholder="Напишите ваш опыт работы здесь"></textarea>
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">11</div>
-                    <label for="form-field-publications" class="question-form-label">Перечислите публикации, активность в СНО (если есть)</label>
-                    <textarea name="publications" id="form-field-publications" class="question-form-textarea" cols="30" rows="10" placeholder="Напишите ваш опыт работы здесь"></textarea>
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">12</div>
-                    <label for="form-field-personal-qualities" class="question-form-label">Расскажите о своих лучших качествах и достоинствах</label>
-                    <textarea name="personal-qualities" id="form-field-personal-qualities" class="question-form-textarea" cols="30" rows="10" placeholder="Напишите ваш опыт работы здесь"></textarea>
-                </div>
-
-                <div class="question-form-step-buttons">
-                    <button class="button button-round button-gray-hollow" @click.prevent="stepBack">Назад</button>
-                    <button class="button button-round button-blue" @click.prevent="changeStep(3)">Далее к шагу №3</button>
                 </div>
             </div>
-
-            <div class="question-form-step" :class="(currentStep == 3) ? 'active' : ''">
-                <div class="question-form-title">Шаг 3 – Регистрация</div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">1</div>
-                    <label for="form-field-email" class="question-form-label">Электронная почта <sup>*</sup></label>
-                    <input id="form-field-email" name="email" type="email" placeholder="email@domain" class="question-form-input">
-                </div>
-
-                <div class="question-form-group">
-                    <div class="question-form-group-num">2</div>
-                    <label class="question-form-label">Пароль <sup>*</sup></label>
-
-                    <div class="question-form-subgroup">
-                        <label for="form-field-password-1" class="question-form-sublabel">Придумайте пароль</label>
-                        <input id="form-field-password-1" name="password-1" type="password" placeholder="Введите пароль" class="question-form-input">
-                    </div>
-
-                    <div class="question-form-subgroup">
-                        <label for="form-field-password-2" class="question-form-sublabel">Подтвердите пароль</label>
-                        <input id="form-field-password-2" name="password-2" type="password" placeholder="Введите пароль ещё раз" class="question-form-input">
-                    </div>
-                </div>
-
-                <div class="question-form-step-buttons">
-                    <button class="button button-round button-gray-hollow" @click.prevent="stepBack">Назад</button>
-                    <button class="button button-round button-blue">Отправить заявку</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </main>
 <footer class="footer">

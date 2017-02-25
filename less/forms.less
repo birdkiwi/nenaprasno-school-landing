@@ -9,7 +9,7 @@
 
 .question-form {
   position: relative;
-  width: 535px;
+  max-width: 535px;
   margin: 0 auto;
 }
 
@@ -89,6 +89,10 @@
   font-size: 17px;
   color: #222222;
   margin-bottom: 15px;
+
+  @media all and (max-width: 980px) {
+    font-size: 14px;
+  }
 }
 
 .question-form-sublabel {
@@ -96,6 +100,10 @@
   font-size: 15px;
   color: #222222;
   margin-bottom: 8px;
+
+  @media all and (max-width: 980px) {
+    font-size: 13px;
+  }
 }
 
 .question-form-input,
@@ -139,6 +147,11 @@
   font-weight: bold;
   margin-bottom: 30px;
   color: #333;
+
+  @media all and (max-width: 980px) {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
 }
 
 /*

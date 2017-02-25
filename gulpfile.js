@@ -30,7 +30,8 @@ var jsFiles = [
         './bower_components/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js',
         './bower_components/flatpickr/dist/flatpickr.js',
         './bower_components/flatpickr/dist/l10n/ru.js',
-        './js/**/*.js'
+        './js/validate-ru.js',
+        './js/app.js'
     ],
     jsDest = './build';
 

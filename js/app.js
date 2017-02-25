@@ -1,5 +1,10 @@
 var validateConfig = {
     locale: 'ru',
+    dictionary: {
+        ru: {
+            messages: messagesRu
+        }
+    },
     errorBagName: 'formErrors',
     fieldsBagName: 'formFields'
 };
@@ -23,14 +28,18 @@ var vueApp = new Vue({
                 return 'Вы действительно хотите покинуть страницу? Все несохраненные данные будут потеряны.';
             };
         },
+        scrollTop: function () {
+            $('html, body').animate({
+                scrollTop: $('.question-form').offset().top - 30
+            }, 1000);
+        },
         changeStep: function (step) {
             //TODO: Validation
-
-            window.scrollTo(0, $('.question-form').offset().top);
+            this.scrollTop();
             this.currentStep = step;
         },
         stepBack: function () {
-            window.scrollTo(0, $('.question-form').offset().top);
+            this.scrollTop();
             this.currentStep--;
         },
         submitForm: function() {

@@ -426,7 +426,38 @@ a {
 }
 
 .competition-conditions {
+  position: relative;
   margin-bottom: 50px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 135px;
+    display: block;
+    background: url("../images/clock.svg");
+    width: 101px;
+    height: 120px;
+
+    @media all and (max-width: 980px) {
+      display: none;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: block;
+    background: url("../images/pencil.svg");
+    width: 111px;
+    height: 110px;
+
+    @media all and (max-width: 980px) {
+      display: none;
+    }
+  }
 }
 
 .competition-conditions-title {
@@ -434,8 +465,24 @@ a {
 }
 
 .competition-conditions-list {
+  position: relative;
   max-width: 680px;
   margin: 0 auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 300px;
+    left: -200px;
+    display: block;
+    background: url("../images/brain.svg");
+    width: 110px;
+    height: 108px;
+
+    @media all and (max-width: 980px) {
+      display: none;
+    }
+  }
 }
 
 .competition-conditions-list-item {

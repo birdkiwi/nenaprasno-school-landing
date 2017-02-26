@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=450">
     <title>Высшая школа онкологии</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="build/style.min.css">
 </head>
 <body>
@@ -44,18 +45,18 @@
             </div>
         </div>
 
-        <form action="post.php" method="POST" class="question-form" @submit.prevent="submitForm">
+        <div class="question-form">
             <transition name="fade">
                 <div class="question-form-overlay" v-if="!formActive"></div>
             </transition>
-            <div class="question-form-step" :class="(currentStep == 1) ? 'active' : ''">
+            <form @submit.prevent class="question-form-step" :class="(currentStep == 1) ? 'active' : ''" data-vv-scope="form-1">
                 <div class="question-form-title">Шаг 1 – Основные сведения</div>
 
                 <div class="question-form-group">
                     <div class="question-form-group-num">1</div>
                     <label for="form-field-fio" class="question-form-label">Как ваше полное имя?</label>
-                    <input v-validate="'required'" :class="{'is-error': formErrors.has('fio') }" id="form-field-fio" name="fio" type="text" placeholder="ФИО" class="question-form-input">
-                    <span v-show="formErrors.has('fio')" class="question-form-input-error">{{ formErrors.first('fio') }}</span>
+                    <input v-validate="'required'" :class="{'is-error': formErrors.has('form-1.fio') }" id="form-field-fio" name="fio" type="text" placeholder="ФИО" class="question-form-input" data-vv-as="ФИО">
+                    <span v-show="formErrors.has('form-1.fio')" class="question-form-input-error">{{ formErrors.first('form-1.fio') }}</span>
                 </div>
 
                 <div class="question-form-group">
@@ -110,16 +111,16 @@
                 <div class="question-form-step-buttons">
                     <button class="button button-round button-blue" @click.prevent="changeStep(2)">Далее к шагу №2</button>
                 </div>
-            </div>
+            </form>
 
-            <div class="question-form-step" :class="(currentStep == 2) ? 'active' : ''">
+            <form @submit.prevent class="question-form-step" :class="(currentStep == 2) ? 'active' : ''" data-vv-scope="form-2">
                 <div class="question-form-title">Шаг 2 – Успехи в учебе</div>
 
                 <div class="question-form-group">
                     <div class="question-form-group-num">1</div>
                     <label for="form-field-average-score" class="question-form-label">Средний бал за весь период обучения</label>
-                    <input v-validate="'required'" :class="{'is-error': formErrors.has('average-score') }" id="form-field-average-score" name="average-score" type="text" placeholder="от 1 до 5" class="question-form-input">
-                    <span v-show="formErrors.has('average-score')" class="question-form-input-error">{{ formErrors.first('average-score') }}</span>
+                    <input v-validate="'required'" :class="{'is-error': formErrors.has('form-2.average-score') }" id="form-field-average-score" name="average-score" type="text" placeholder="от 1 до 5" class="question-form-input" data-vv-as="Средний бал за весь период обучения">
+                    <span v-show="formErrors.has('form-2.average-score')" class="question-form-input-error">{{ formErrors.first('form-2.average-score') }}</span>
                 </div>
 
                 <div class="question-form-group">
@@ -204,9 +205,9 @@
                     <button class="button button-round button-gray-hollow" @click.prevent="stepBack">Назад</button>
                     <button class="button button-round button-blue" @click.prevent="changeStep(3)">Далее к шагу №3</button>
                 </div>
-            </div>
+            </form>
 
-            <div class="question-form-step" :class="(currentStep == 3) ? 'active' : ''">
+            <form @submit.prevent class="question-form-step" :class="(currentStep == 3) ? 'active' : ''" data-vv-scope="form-3">
                 <div class="question-form-title">Шаг 3 – Регистрация</div>
 
                 <div class="question-form-group">
@@ -234,8 +235,8 @@
                     <button class="button button-round button-gray-hollow" @click.prevent="stepBack">Назад</button>
                     <button class="button button-round button-blue">Отправить заявку</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </main>
 <footer class="footer">

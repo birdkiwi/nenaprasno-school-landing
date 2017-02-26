@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=450">
     <title>Высшая школа онкологии</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="build/style.min.css">
 </head>
 <body>

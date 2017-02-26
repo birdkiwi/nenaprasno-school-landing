@@ -23838,9 +23838,25 @@ var vueApp = new Vue({
             }, 1000);
         },
         changeStep: function (step) {
-            //TODO: Validation
-            this.scrollTop();
-            this.currentStep = step;
+            var _this = this,
+                currentScope = 'form-' + _this.currentStep;
+
+            _this.$validator.validateAll(currentScope).then(function (success) {
+                if (success) {
+                    _this.scrollTop();
+                    _this.currentStep = step;
+                }
+            }, function (error) {
+                alert('Пожалуйста, проверьте все поля на правильность заполнения');
+                var currentScopeErrors = _this.formErrors.errors.map(function(fieldError) {
+                    return fieldError.scope == currentScope ? fieldError : false
+                });
+
+                //Scroll to first error field
+                $('html, body').animate({
+                    scrollTop: $('input[name="' + currentScopeErrors[0].field  + '"]').offset().top - 35
+                }, 1000);
+            });
         },
         stepBack: function () {
             this.scrollTop();

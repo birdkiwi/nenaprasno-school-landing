@@ -58,15 +58,33 @@ var vueApp = new Vue({
             this.scrollTop();
             this.currentStep--;
         },
-        submitForm: function() {
+        submitForm: function(event) {
+            var formUrl = event.target.getAttribute('action'),
+                formMethod = event.target.getAttribute('method') || 'post',
+                formData = $(event.target).serialize();
+
             // Validate All returns a promise and provides the validation result.
             this.$validator.validateAll().then(function (success) {
                 if (!success) {
-                    // TODO: handle error
                     return;
                 }
                 window.onbeforeunload = null;
-                alert('From Submitted!');
+
+                $.ajax({
+                    method: formMethod,
+                    url: formUrl,
+                    data: formData
+                }).done(function( msg ) {
+                    //TODO: check msg!
+                    alert('Данные были успешно отправлены!');
+                    window.location.reload();
+                }).fail(function (jqXHR, textStatus, e) {
+                    alert('Возникла ошибка отправки данных! Пожалуйста, попробуйте отправить форму еще раз, либо свяжитесь с нами.');
+                    console.log(jqXHR, textStatus, e);
+                });
+
+            }, function (error) {
+                alert('Пожалуйста, проверьте все поля на правильность заполнения');
             });
         }
     },

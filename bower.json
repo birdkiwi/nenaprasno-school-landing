@@ -21,6 +21,7 @@
     "flatpickr": "flatpickr-calendar#^2.4.2",
     "vue": "^2.1.10",
     "jquery.inputmask": "^3.3.4",
-    "vee-validate": "2.0.0-beta.23"
+    "vee-validate": "2.0.0-beta.23",
+    "animate.css": "^3.5.2"
   }
 }

@@ -15,10 +15,10 @@
 
 .question-form-overlay {
   position: absolute;
-  left: 0;
+  left: -40px;
   top: 0;
-  z-index: 100;
-  width: 100%;
+  z-index: 200;
+  width: calc(100% + 40px);
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
 }
@@ -43,6 +43,7 @@
   transition: all 400ms;
 
   &.active {
+    overflow: visible;
     opacity: 1;
     max-height: 10000px;
     transition: all 400ms;
@@ -77,9 +78,13 @@
   height: 24px;
   line-height: 24px;
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   border-radius: 100px;
+}
+
+.question-form-required {
+  color: #F45B5B;
 }
 
 .question-form-label {
@@ -358,6 +363,17 @@
     text-indent: 10px;
     font-style: normal;
   }
+}
+
+.question-form-birthdate {
+  display: flex;
+  margin: 0 -10px;
+}
+
+
+.question-form-birthdate-col {
+  flex: 0 0 33.3333%;
+  padding: 0 10px;
 }
 
 .question-form-timer {

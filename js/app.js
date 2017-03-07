@@ -13,11 +13,65 @@ Vue.use(VeeValidate, validateConfig);
 
 Vue.config.debug = true;
 
+Vue.component('Modal', {
+    template: '#modal-template',
+    props: ['show', 'onClose'],
+    methods: {
+        close: function () {
+            this.onClose();
+        }
+    },
+    ready: function () {
+        document.addEventListener("keydown", function(e) {
+            if (this.show && e.keyCode == 27) {
+                this.onClose();
+            }
+        });
+    }
+});
+
+Vue.component('LoginModal', {
+    template: '#login-modal-template',
+    props: ['show'],
+    data: function () {
+        return {
+
+        }
+    },
+    methods: {
+        close: function () {
+            this.$parent.showLoginModal = false;
+        },
+        loginPost: function () {
+            //TODO: Ajax login, validation
+            alert('Login complete');
+            this.close();
+        }
+    }
+});
+
 var vueApp = new Vue({
     el: '#vue-app',
     data: {
         formActive: false,
-        currentStep: 1
+        currentStep: 1,
+        showLoginModal: false,
+        months: [
+            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+        ],
+        volunteer: 0
+    },
+    computed: {
+        years: function () {
+            var years = [],
+            currentYear = new Date().getFullYear();
+
+            for (var i=currentYear-50; i<currentYear; i++) {
+                years.push(i);
+            }
+
+            return years;
+        }
     },
     methods: {
         activateForm: function (e) {
@@ -59,12 +113,15 @@ var vueApp = new Vue({
             this.currentStep--;
         },
         submitForm: function(event) {
+            var _this = this,
+                currentScope = 'form-' + _this.currentStep;
+
             var formUrl = event.target.getAttribute('action'),
                 formMethod = event.target.getAttribute('method') || 'post',
                 formData = $(event.target).serialize();
 
             // Validate All returns a promise and provides the validation result.
-            this.$validator.validateAll().then(function (success) {
+            this.$validator.validateAll(currentScope).then(function (success) {
                 if (!success) {
                     return;
                 }
@@ -98,3 +155,4 @@ var vueApp = new Vue({
         $(":input").inputmask();
     }
 });
+

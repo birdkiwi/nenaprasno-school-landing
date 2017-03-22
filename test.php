@@ -219,7 +219,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|numeric|between:1,5'"
+                                v-validate="'required|decimal|between:1,5'"
                                 :class="{'is-error': formErrors.has('form-2.average-score') }"
                                 id="form-field-average-score"
                                 name="average-score"
@@ -240,7 +240,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|numeric|between:1,5'"
+                                v-validate="'required|decimal|between:1,5'"
                                 :class="{'is-error': formErrors.has('form-2.anatomy-score') }"
                                 id="form-field-anatomy-score"
                                 name="anatomy-score"
@@ -261,7 +261,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|numeric|between:1,5'"
+                                v-validate="'required|decimal|between:1,5'"
                                 :class="{'is-error': formErrors.has('form-2.biochemistry-score') }"
                                 id="form-field-biochemistry-score"
                                 name="biochemistry-score"
@@ -282,7 +282,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|numeric|between:1,5'"
+                                v-validate="'required|decimal|between:1,5'"
                                 :class="{'is-error': formErrors.has('form-2.pharma-score') }"
                                 id="form-field-pharma-score"
                                 name="pharma-score"
@@ -303,7 +303,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|numeric|between:1,5'"
+                                v-validate="'required|decimal|between:1,5'"
                                 :class="{'is-error': formErrors.has('form-2.pathophysiology-score') }"
                                 id="form-field-pathophysiology-score"
                                 name="pathophysiology-score"
@@ -402,7 +402,7 @@
                             <sup class="question-form-required">*</sup>
                         </label>
                         <input
-                                v-validate="'required|email'"
+                                v-validate="'required|regex:.+@.+'"
                                 :class="{'is-error': formErrors.has('form-3.email') }"
                                 id="form-field-email"
                                 name="email"

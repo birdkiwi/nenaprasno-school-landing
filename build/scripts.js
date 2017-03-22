@@ -23793,7 +23793,7 @@ var messagesRu = {
     },
     not_in: function (field) { return ("Поле " + field + " должно быть допустимым значением."); },
     numeric: function (field) { return ("Поле " + field + " должно быть числом."); },
-    regex: function (field) { return ("Формат пооля " + field + " неверный."); },
+    regex: function (field) { return ("Формат поля " + field + " неверный."); },
     required: function (field) { return ("Поле " + field + " должно быть заполнено."); },
     size: function (field, ref) {
         var size = ref[0];

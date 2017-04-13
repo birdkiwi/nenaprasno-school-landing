@@ -377,7 +377,9 @@
 }
 
 .question-form-timer {
+  display: none;
   position: absolute;
+  z-index: 100;
   top: 15px;
   right: -200px;
   width: 150px;
@@ -387,6 +389,39 @@
   text-align: center;
   color: #7A7A7A;
   font-size: 14px;
+  background: rgba(255, 255, 255, 0.6);
+
+  &.active {
+    display: block;
+  }
+
+  @media all and (max-width: 980px) {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 15px 10px;
+  }
+}
+
+.question-form-timer-icon {
+  transition: all 300ms;
+
+  &.is-rotating {
+    animation: rotating 4s linear;
+    transition: all 300ms;
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .question-form-timer-val {

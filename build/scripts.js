@@ -23860,6 +23860,7 @@ var vueApp = new Vue({
         formActive: false,
         currentStep: 1,
         showLoginModal: false,
+        timer: 0,
         months: [
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ],
@@ -23879,12 +23880,28 @@ var vueApp = new Vue({
     },
     methods: {
         activateForm: function (e) {
-            this.formActive = true;
+            var _this = this;
+
+            _this.formActive = true;
+
             $(e.target).removeClass('button-blue-hollow').addClass('button-blue');
 
             window.onbeforeunload = function(){
                 return 'Вы действительно хотите покинуть страницу? Все несохраненные данные будут потеряны.';
             };
+
+            setTimeout(function () {
+                if ( $(_this.$el).find('[data-remaining]').length ) {
+                    _this.timer = $(_this.$el).find('[data-remaining]').data('remaining');
+
+                    var timeoutInterval = setInterval(function () {
+                        _this.timer > 0 ? _this.timer += - 1 : clearInterval(timeoutInterval);
+                    }, 1000);
+                }
+            }, 2000);
+        },
+        downloadAndActivateForm: function (url, block) {
+            var _this = this;
         },
         scrollTop: function () {
             $('html, body').animate({

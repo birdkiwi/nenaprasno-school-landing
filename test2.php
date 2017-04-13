@@ -28,13 +28,27 @@
             </div>
 
             <div class="question-form" v-if="formActive">
-                <div class="question-form-timer">
-                    <div class="question-form-timer-icon">
+                <div class="question-form-timer" :class="formActive ? 'active' : 'inactive'" data-remaining="3600">
+                    <div class="question-form-timer-icon" :class="timer > 0 ? 'is-rotating' : ''">
                         <?php include 'images/sand-clock.svg'; ?>
                     </div>
-                    Осталось
-                    <div class="question-form-timer-val">
-                        58 минут
+                    <div v-if="timer > 0">
+                        Осталось
+                        <div class="question-form-timer-val">
+                            <span v-if="timer > 60">
+                                {{ Math.floor(timer/60) }} мин.
+                            </span>
+                            <span v-else>
+                                {{ timer }} сек.
+                            </span>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="question-form-timer-val">
+                            <small>
+                                время вышло
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <form action="test2.php" method="post" @submit.prevent="submitForm" class="question-form-step" :class="(currentStep == 1) ? 'active' : ''" data-vv-scope="form-1">

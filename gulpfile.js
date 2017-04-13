@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('less', function() {
@@ -11,6 +12,10 @@ gulp.task('less', function() {
         .pipe(sourcemaps.init())
             .pipe(less().on('error', function(err) {
                 console.log(err);
+            }))
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions'],
+                cascade: false
             }))
             .pipe(cssmin().on('error', function(err) {
                 console.log(err);

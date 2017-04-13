@@ -62,14 +62,14 @@
                             <div class="question-form-birthdate-col">
                                 <div class="question-form-select">
                                     <select name="birthdate-day">
-                                        <option v-for="n in 30" :value="n">{{ n }}</option>
+                                        <option v-for="n in daysInMonth" :value="n">{{ n }}</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="question-form-birthdate-col">
                                 <div class="question-form-select">
-                                    <select name="birthdate-month">
+                                    <select name="birthdate-month" v-model="birthdayMonth">
                                         <option v-for="(month, n) in months" :value="n+1">{{ month }}</option>
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
 
                             <div class="question-form-birthdate-col">
                                 <div class="question-form-select">
-                                    <select name="birthdate-year">
+                                    <select name="birthdate-year" v-model="birthdayYear">
                                         <option v-for="(year, n) in years" :value="n+1">{{ year }}</option>
                                     </select>
                                 </div>

@@ -14,7 +14,7 @@
     <?php include "header.php"; ?>
     <main class="main-content">
         <div class="wrapper">
-            <div class="test-welcome">
+            <div class="test-welcome" data-remaining="3600">
                 <div class="test-welcome-title">Второй тур</div>
 
                 <div class="test-welcome-text" :class="!formActive ? 'active' : ''">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="question-form" v-if="formActive">
-                <div class="question-form-timer" :class="formActive ? 'active' : 'inactive'" data-remaining="3600">
+                <div class="question-form-timer" :class="formActive ? 'active' : 'inactive'">
                     <div class="question-form-timer-icon" :class="timer > 0 ? 'is-rotating' : ''">
                         <?php include 'images/sand-clock.svg'; ?>
                     </div>
